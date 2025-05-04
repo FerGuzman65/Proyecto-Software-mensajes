@@ -26,7 +26,7 @@ def enviar():
             <body style="font-family: Arial, sans-serif;">
                 <h2>🔐 Mensaje cifrado</h2>
                 <p>{mensaje_cifrado}</p>
-                <a href="http://localhost:5005/desencriptar?token={mensaje_cifrado}"
+                <a href="https://correo-encriptado.onrender.com/desencriptar?token=...">Desencriptar"
                    style="background-color: #3498db; color: white; padding: 10px 20px;
                           text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px;">
                    🔓 Desencriptar mensaje
@@ -72,5 +72,8 @@ def ver_desencriptado():
     except Exception as e:
         return f"Error al desencriptar: {str(e)}", 500
 
+import os
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 5005))  # Render asigna el puerto aquí
+    app.run(host='0.0.0.0', port=port)
